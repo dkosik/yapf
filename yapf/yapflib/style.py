@@ -894,7 +894,7 @@ GLOBAL_STYLE = (
         'style'))
 
 # The name of the file to use for directory-local style definition.
-LOCAL_STYLE = '.style.yapf'
+LOCAL_STYLE = '.style.yapf-mirage'
 
 # Alternative place for directory-local style definition. Style should be
 # specified in the '[yapf]' section.
