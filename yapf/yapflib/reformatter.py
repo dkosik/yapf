@@ -48,9 +48,17 @@ def Reformat(llines, lines=None):
   prev_line = None  # The previous line.
   indent_width = style.Get('INDENT_WIDTH')
 
+  current_depth = 0
+  new_in_depth = True
   for lline in _SingleOrMergedLines(llines):
     first_token = lline.first
     decoration = re.match(r"# [=\*]+", first_token.value)
+
+    if lline.depth > current_depth:
+      new_in_depth = True
+    elif lline.depth < current_depth:
+      new_in_depth = False
+    current_depth = lline.depth
 
     if decoration:
       first_token.newlines = None
@@ -67,6 +75,9 @@ def Reformat(llines, lines=None):
         new_lines = 1
       elif lline.depth >= 2:
         new_lines = 2
+      elif new_in_depth:
+        new_lines = 2
+        new_in_depth = False
       elif first_token_lineno - prev_last_token_lineno > 1:
         new_lines = 4
       else:
