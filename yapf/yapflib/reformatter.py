@@ -50,7 +50,36 @@ def Reformat(llines, lines=None):
 
   for lline in _SingleOrMergedLines(llines):
     first_token = lline.first
-    _FormatFirstToken(first_token, lline.depth, prev_line, final_lines)
+    decoration = re.match(r"# [=\*]+", first_token.value)
+
+    if decoration:
+      first_token.newlines = None
+      new_lines = 1
+
+      # Calculate number of new lines between decoration and previous line.
+      first_token_lineno = first_token.lineno
+      if prev_line is None:
+        prev_last_token_lineno = first_token_lineno - 1
+      else:
+        prev_last_token_lineno = prev_line.last.lineno
+
+      if prev_line is not None and prev_line.first.value in {'class', 'def', 'async'}:
+        new_lines = 1
+      elif lline.depth >= 2:
+        new_lines = 2
+      elif first_token_lineno - prev_last_token_lineno > 1:
+        new_lines = 4
+      else:
+        new_lines = 1
+
+      spaces_before = lline.depth
+      if prev_line is not None and prev_line.first.value in {'class', 'def', 'async'}:
+        spaces_before = lline.depth - 1
+
+      first_token.AddWhitespacePrefix(new_lines, spaces_before * indent_width)
+
+    else:
+      _FormatFirstToken(first_token, lline.depth, prev_line, final_lines)
 
     indent_amt = indent_width * lline.depth
     state = format_decision_state.FormatDecisionState(lline, indent_amt)
@@ -595,6 +624,7 @@ def _FormatFirstToken(first_token, indent_depth, prev_line, final_lines):
 NO_BLANK_LINES = 1
 ONE_BLANK_LINE = 2
 TWO_BLANK_LINES = 3
+THREE_BLANK_LINES = 4
 
 
 def _IsClassOrDef(tok):
@@ -710,7 +740,11 @@ def _CalculateNumberOfNewlines(first_token, indent_depth, prev_line,
     prev_last_token_lineno += prev_last_token.value.count('\n')
 
   if first_token_lineno - prev_last_token_lineno > 1:
-    return ONE_BLANK_LINE
+    first_token.newlines = None
+    if first_token.value in {'class', 'def', 'async'}:
+      return THREE_BLANK_LINES
+    else:
+      return ONE_BLANK_LINE
 
   return NO_BLANK_LINES
 

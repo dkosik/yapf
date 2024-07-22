@@ -3,9 +3,9 @@ requires = ["setuptools>=58.5.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "yapf"
+name = "yapf-mirage-fork"
 description = "A formatter for Python code"
-authors = [{ name = "Google Inc." }]
+authors = [{ name = "Google Inc." }, { name = "Mirage Team" }]
 maintainers = [{ name = "Bill Wendling", email = "morbo@google.com" }]
 dynamic = ["version"]
 license = { file = "LICENSE" }
