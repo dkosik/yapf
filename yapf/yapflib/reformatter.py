@@ -342,6 +342,10 @@ def _AlignTrailingComments(final_lines):
              ):
             break
 
+          # If depth differs, we are in a new block.
+          if this_line.depth != line.depth:
+            break
+
           if this_line.disable:
             all_pc_line_lengths.append([])
             continue
