@@ -52,7 +52,7 @@ def Reformat(llines, lines=None):
   new_in_depth = True
   for lline in _SingleOrMergedLines(llines):
     first_token = lline.first
-    decoration = re.match(r"# [=\*]+", first_token.value)
+    decoration = re.match(r"^[\t ]*# [=\*]+", first_token.value)
 
     if lline.depth > current_depth:
       new_in_depth = True

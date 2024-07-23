@@ -21,6 +21,8 @@ making them easier to process.
   SpliceComments(): the main function exported by this module.
 """
 
+import re
+
 from yapf_third_party._ylib2to3 import pygram
 from yapf_third_party._ylib2to3 import pytree
 from yapf_third_party._ylib2to3.pgen2 import token
@@ -154,18 +156,33 @@ def SpliceComments(tree):
                 # _STANDALONE_LINE_NODES for more details.
                 node_with_line_parent = _FindNodeWithStandaloneLineParent(child)
 
+                # Split decoration comment
+                rest_comment_prefix = ""
+                if re.match(r"^[\t ]*# [=\*]+", comment_prefix):
+                  pytree_utils.InsertNodesBefore(
+                    _CreateCommentsFromPrefix(
+                         comment_prefix.split("\n", 1)[0], comment_lineno, 0, standalone=True),
+                    node_with_line_parent)
+
+                  rest_comment_prefix = comment_prefix.split("\n", 1)[1]
+                  comment_lineno += 1
+
+                else:
+                  rest_comment_prefix = comment_prefix
+
                 if pytree_utils.NodeName(
                     node_with_line_parent.parent) in {'funcdef', 'classdef'}:
                   # Keep a comment that's not attached to a function or class
                   # next to the object it is attached to.
+
                   comment_end = (
-                      comment_lineno + comment_prefix.rstrip('\n').count('\n'))
+                      comment_lineno + rest_comment_prefix.rstrip('\n').count('\n'))
                   if comment_end < node_with_line_parent.lineno - 1:
                     node_with_line_parent = node_with_line_parent.parent
 
                 pytree_utils.InsertNodesBefore(
                     _CreateCommentsFromPrefix(
-                        comment_prefix, comment_lineno, 0, standalone=True),
+                        rest_comment_prefix, comment_lineno, 0, standalone=True),
                     node_with_line_parent)
                 break
               else:
