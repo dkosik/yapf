@@ -73,6 +73,8 @@ def Reformat(llines, lines=None):
 
       if prev_line is not None and prev_line.first.value in {'class', 'def', 'async'}:
         new_lines = 1
+      elif prev_line is not None and len(prev_line.tokens) >= 2 and prev_line.first.value == 'if' and prev_line.tokens[1].value == "__name__":
+        new_lines = 1
       elif lline.depth >= 2:
         new_lines = 2
       elif new_in_depth:
@@ -85,6 +87,8 @@ def Reformat(llines, lines=None):
 
       spaces_before = lline.depth
       if prev_line is not None and prev_line.first.value in {'class', 'def', 'async'}:
+        spaces_before = lline.depth - 1
+      elif prev_line is not None and len(prev_line.tokens) >= 2 and prev_line.first.value == 'if' and prev_line.tokens[1].value == "__name__":
         spaces_before = lline.depth - 1
 
       first_token.AddWhitespacePrefix(new_lines, spaces_before * indent_width)
