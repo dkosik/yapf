@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "yapf-mirage-fork"
-description = "A formatter for Python code"
+description = "A formatter for Python code, Mirage flavor"
 authors = [{ name = "Google Inc." }, { name = "Mirage Team" }]
 maintainers = [{ name = "Bill Wendling", email = "morbo@google.com" }]
 dynamic = ["version"]
@@ -30,8 +30,8 @@ classifiers = [
 dependencies = ['platformdirs>=3.5.1', 'tomli>=2.0.1; python_version<"3.11"']
 
 [project.scripts]
-yapf = "yapf:run_main"
-yapf-diff = "yapf_third_party.yapf_diff.yapf_diff:main"
+yapf-mirage = "yapf:run_main"
+yapf-diff-mirage = "yapf_third_party.yapf_diff.yapf_diff:main"
 
 [project.urls]
 # https://daniel.feldroy.com/posts/2023-08-pypi-project-urls-cheatsheet
