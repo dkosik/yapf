@@ -772,7 +772,10 @@ def _CalculateNumberOfNewlines(first_token, indent_depth, prev_line,
   if first_token_lineno - prev_last_token_lineno > 1:
     first_token.newlines = None
     if first_token.value in {'class', 'def', 'async'}:
-      return THREE_BLANK_LINES
+      if first_token.value == "async" and first_token.next_token and first_token.next_token.value != "def":
+        return ONE_BLANK_LINE
+      else:
+        return THREE_BLANK_LINES
     else:
       return ONE_BLANK_LINE
 
