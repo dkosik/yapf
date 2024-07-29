@@ -7,8 +7,6 @@
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
         "editor.defaultFormatter": "eeyore.yapf",
-        "editor.formatOnSaveMode": "file",
-        "editor.formatOnSave": true,
         "editor.wordBasedSuggestions": false,
         "files.trimTrailingWhitespace": true,
     },

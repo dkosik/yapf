@@ -44,15 +44,14 @@ Issues = 'https://github.com/google/yapf/issues'
 python_tag = "py3"
 
 [tool.setuptools]
-include-package-data = true
-package-dir = { yapf_third_party = 'third_party/yapf_third_party' }
+include-package-data = false
 
 [tool.setuptools.dynamic]
 version = { attr = "yapf._version.__version__" }
 
 [tool.setuptools.packages.find]
-where = [".", 'third_party']
-include = ["yapf*", 'yapftests*']
+where = []
+include = []
 
 [tool.setuptools.package-data]
 yapf_third_party = [
