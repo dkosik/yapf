@@ -155,11 +155,12 @@ arith_expr: term (('+'|'-') term)*
 term: factor (('*'|'@'|'/'|'%'|'//') factor)*
 factor: ('+'|'-'|'~') factor | power
 power: [AWAIT] atom trailer* ['**' factor]
-atom: ('(' [yield_expr|testlist_gexp] ')' |
-       '[' [listmaker] ']' |
+atom: ('(' [yield_expr|testlist_comp] ')' |
+       '[' [testlist_comp] ']' |
        '{' [dictsetmaker] '}' |
        '`' testlist1 '`' |
        NAME | NUMBER | STRING+ | '.' '.' '.')
+testlist_comp: (namedexpr_test|star_expr) ( comp_for | (',' (namedexpr_test|star_expr))* [','] )
 listmaker: (namedexpr_test|star_expr) ( old_comp_for | (',' (namedexpr_test|star_expr))* [','] )
 testlist_gexp: (namedexpr_test|star_expr) ( old_comp_for | (',' (namedexpr_test|star_expr))* [','] )
 lambdef: 'lambda' [varargslist] ':' test
@@ -250,3 +251,10 @@ case_block: "case" patterns [guard] ':' suite
 guard: 'if' namedexpr_test
 patterns: pattern (',' pattern)* [',']
 pattern: (expr|star_expr) ['as' expr]
+
+strings: (STRING | fstring)+
+fstring: FSTRING_START fstring_content* FSTRING_END
+fstring_content: FSTRING_STRING | fstring_expr
+fstring_conversion: '!' NAME
+fstring_expr: '{' (testlist_comp | yield_expr) ['='] [ fstring_conversion ] [ fstring_format_spec ] '}'
+fstring_format_spec: ':' fstring_content*
