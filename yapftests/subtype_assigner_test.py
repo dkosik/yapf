@@ -16,9 +16,9 @@
 import textwrap
 import unittest
 
-from yapf.pytree import pytree_utils
-from yapf.yapflib import format_token
-from yapf.yapflib import subtypes
+from yapf_mirage.pytree import pytree_utils
+from yapf_mirage.yapflib import format_token
+from yapf_mirage.yapflib import subtypes
 
 from yapftests import yapf_test_helper
 

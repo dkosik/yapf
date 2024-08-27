@@ -25,11 +25,11 @@ import textwrap
 import unittest
 from io import StringIO
 
-from yapf_third_party._ylib2to3.pgen2 import tokenize
+from yapf_third_party_mirage._ylib2to3.pgen2 import tokenize
 
-from yapf.yapflib import errors
-from yapf.yapflib import style
-from yapf.yapflib import yapf_api
+from yapf_mirage.yapflib import errors
+from yapf_mirage.yapflib import style
+from yapf_mirage.yapflib import yapf_api
 
 from yapftests import utils
 from yapftests import yapf_test_helper

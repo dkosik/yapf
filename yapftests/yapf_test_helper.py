@@ -17,16 +17,16 @@ import difflib
 import sys
 import unittest
 
-from yapf.pytree import blank_line_calculator
-from yapf.pytree import comment_splicer
-from yapf.pytree import continuation_splicer
-from yapf.pytree import pytree_unwrapper
-from yapf.pytree import pytree_utils
-from yapf.pytree import pytree_visitor
-from yapf.pytree import split_penalty
-from yapf.pytree import subtype_assigner
-from yapf.yapflib import identify_container
-from yapf.yapflib import style
+from yapf_mirage.pytree import blank_line_calculator
+from yapf_mirage.pytree import comment_splicer
+from yapf_mirage.pytree import continuation_splicer
+from yapf_mirage.pytree import pytree_unwrapper
+from yapf_mirage.pytree import pytree_utils
+from yapf_mirage.pytree import pytree_visitor
+from yapf_mirage.pytree import split_penalty
+from yapf_mirage.pytree import subtype_assigner
+from yapf_mirage.yapflib import identify_container
+from yapf_mirage.yapflib import style
 
 
 class YAPFTest(unittest.TestCase):

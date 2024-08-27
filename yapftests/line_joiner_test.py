@@ -16,8 +16,8 @@
 import textwrap
 import unittest
 
-from yapf.yapflib import line_joiner
-from yapf.yapflib import style
+from yapf_mirage.yapflib import line_joiner
+from yapf_mirage.yapflib import style
 
 from yapftests import yapf_test_helper
 

@@ -15,11 +15,11 @@
 
 import unittest
 
-from yapf_third_party._ylib2to3 import pygram
-from yapf_third_party._ylib2to3 import pytree
-from yapf_third_party._ylib2to3.pgen2 import token
+from yapf_third_party_mirage._ylib2to3 import pygram
+from yapf_third_party_mirage._ylib2to3 import pytree
+from yapf_third_party_mirage._ylib2to3.pgen2 import token
 
-from yapf.pytree import pytree_utils
+from yapf_mirage.pytree import pytree_utils
 
 from yapftests import yapf_test_helper
 

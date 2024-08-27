@@ -16,9 +16,9 @@
 import textwrap
 import unittest
 
-from yapf.yapflib import reformatter
-from yapf.yapflib import style
-from yapf.yapflib import yapf_api
+from yapf_mirage.yapflib import reformatter
+from yapf_mirage.yapflib import style
+from yapf_mirage.yapflib import yapf_api
 
 from yapftests import yapf_test_helper
 

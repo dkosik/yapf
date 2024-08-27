@@ -17,12 +17,12 @@ import sys
 import textwrap
 import unittest
 
-from yapf_third_party._ylib2to3 import pytree
+from yapf_third_party_mirage._ylib2to3 import pytree
 
-from yapf.pytree import pytree_utils
-from yapf.pytree import pytree_visitor
-from yapf.pytree import split_penalty
-from yapf.yapflib import style
+from yapf_mirage.pytree import pytree_utils
+from yapf_mirage.pytree import pytree_visitor
+from yapf_mirage.pytree import split_penalty
+from yapf_mirage.yapflib import style
 
 from yapftests import yapf_test_helper
 

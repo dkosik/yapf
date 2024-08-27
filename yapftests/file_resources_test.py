@@ -22,8 +22,8 @@ import tempfile
 import unittest
 from io import BytesIO
 
-from yapf.yapflib import errors
-from yapf.yapflib import file_resources
+from yapf_mirage.yapflib import errors
+from yapf_mirage.yapflib import file_resources
 
 from yapftests import utils
 from yapftests import yapf_test_helper

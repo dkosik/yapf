@@ -20,7 +20,7 @@ import tempfile
 import textwrap
 import unittest
 
-from yapf.yapflib import style
+from yapf_mirage.yapflib import style
 
 from yapftests import utils
 from yapftests import yapf_test_helper

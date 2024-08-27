@@ -33,6 +33,8 @@
 /dist
 /.tox
 /yapf.egg-info
+/yapf_mirage_fork.egg-info
+
 
 # IDEs
 /.idea
