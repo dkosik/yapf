@@ -19,7 +19,7 @@ import unittest
 from contextlib import contextmanager
 from io import StringIO
 
-import yapf
+import yapf_mirage
 
 from yapftests import yapf_test_helper
 

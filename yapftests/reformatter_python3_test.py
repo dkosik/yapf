@@ -70,6 +70,42 @@ class TestsForPython3Code(yapf_test_helper.YAPFTest):
     llines = yapf_test_helper.ParseAndUnwrap(unformatted_code)
     self.assertCodeEqual(expected_formatted_code, reformatter.Reformat(llines))
 
+  def testTypeDefinition(self):
+    unformatted_code = textwrap.dedent("""\
+        type   MFDChange =  dict[str, any]
+    """)
+    expected_formatted_code = textwrap.dedent("""\
+        type MFDChange = dict[str, any]
+    """)
+    llines = yapf_test_helper.ParseAndUnwrap(unformatted_code)
+    self.assertCodeEqual(expected_formatted_code, reformatter.Reformat(llines))
+
+  def testMultiplyStringPrint(self):
+    unformatted_code = textwrap.dedent("""\
+        print("a", end="")
+    """)
+    expected_formatted_code = textwrap.dedent("""\
+        print("a", end="")
+    """)
+    llines = yapf_test_helper.ParseAndUnwrap(unformatted_code)
+    self.assertCodeEqual(expected_formatted_code, reformatter.Reformat(llines))
+
+  def testFStringDict(self):
+    unformatted_code = textwrap.dedent("""\
+        dict = {"a": 1}
+        print(f"{dict['a']}")
+    """)
+
+    llines = yapf_test_helper.ParseAndUnwrap(unformatted_code)
+
+  def testTypeMiddle(self):
+    unformatted_code = textwrap.dedent("""\
+              if type is "a":
+                pass
+    """)
+    llines = yapf_test_helper.ParseAndUnwrap(unformatted_code)
+
+
   def testAnnotations(self):
     unformatted_code = textwrap.dedent("""\
         def foo(a: list, b: "bar") -> dict:

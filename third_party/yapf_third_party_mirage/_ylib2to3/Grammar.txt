@@ -106,7 +106,7 @@ global_stmt: ('global' | 'nonlocal') NAME (',' NAME)*
 exec_stmt: 'exec' expr ['in' test [',' test]]
 assert_stmt: 'assert' test [',' test]
 
-compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt | match_stmt
+compound_stmt: if_stmt | while_stmt | for_stmt | try_stmt | with_stmt | funcdef | classdef | decorated | async_stmt | match_stmt | type_def
 async_stmt: ASYNC (funcdef | with_stmt | for_stmt)
 if_stmt: 'if' namedexpr_test ':' suite ('elif' namedexpr_test ':' suite)* ['else' ':' suite]
 while_stmt: 'while' namedexpr_test ':' suite ['else' ':' suite]
@@ -251,6 +251,9 @@ case_block: "case" patterns [guard] ':' suite
 guard: 'if' namedexpr_test
 patterns: pattern (',' pattern)* [',']
 pattern: (expr|star_expr) ['as' expr]
+
+# Type
+type_def: "type" NAME '=' (expr|star_expr) NEWLINE
 
 strings: (STRING | fstring)+
 fstring: FSTRING_START fstring_content* FSTRING_END
